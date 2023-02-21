@@ -20,8 +20,7 @@ function App() {
   const carga = () => {
     const iframe = document.querySelector("iframe");
     iframe.contentWindow.postMessage(
-      `${submitData.TenantId},${submitData.FormularioUUID},${submitData.CodigoIdioma}`,
-      "https://localhost:7283/Consentimientos"
+      `${submitData.TenantId},${submitData.FormularioUUID},${submitData.CodigoIdioma}`, submitData.urlIfram
     );
     console.log("padre");
   };
