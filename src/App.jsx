@@ -47,6 +47,7 @@ function App() {
     });
     console.log(e)
     if(activarIframe){
+      setdatoRecibido("");
       setactivarIframe(false)
       setTimeout(() => {
         setactivarIframe(true)
