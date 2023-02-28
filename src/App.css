@@ -1,6 +1,14 @@
+html {
+ 
+  height: 100vh;
+  background-size: 100%;
+  
+  background-image: url("./image/rus.jpg");
+}
 .App {
+  margin-top: 30px;
   text-align: center;
-
+  padding: 0px 30px;
 }
 
 .App-logo {

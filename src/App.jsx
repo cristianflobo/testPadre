@@ -3,6 +3,8 @@ import "./App.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import imagen from "../src/image/check.png";
+import rustico from "./image/rustico.png";
+import cafe from "./image/cafe.png";
 
 function App() {
   const [datoRecibido, setdatoRecibido] = useState("");
@@ -20,7 +22,8 @@ function App() {
   const carga = () => {
     const iframe = document.querySelector("iframe");
     iframe.contentWindow.postMessage(
-      `${submitData.TenantId},${submitData.FormularioUUID},${submitData.CodigoIdioma}`, submitData.urlIfram
+      `${submitData.TenantId},${submitData.FormularioUUID},${submitData.CodigoIdioma}`,
+      submitData.urlIfram
     );
     console.log("padre");
   };
@@ -39,76 +42,97 @@ function App() {
     setsubmitData({
       ...submitData,
       [e.target[0].name]: e.target[0].value === "" ? "123" : e.target[0].value,
-      [e.target[1].name]:e.target[1].value === ""
+      [e.target[1].name]:
+        e.target[1].value === ""
           ? "63d7d2b1787ff3cac5631894"
           : e.target[1].value,
-      [e.target[2].name]:e.target[2].value === "" ? "Idioma" : e.target[2].value,
-      [e.target[3].name]:e.target[3].value === "" ? "https://localhost:7283/Consentimientos/" :e.target[3].value 
+      [e.target[2].name]:
+        e.target[2].value === "" ? "Idioma" : e.target[2].value,
+      [e.target[3].name]:
+        e.target[3].value === ""
+          ? "https://localhost:7283/Consentimientos/"
+          : e.target[3].value,
     });
-    console.log(e)
-    if(activarIframe){
+    console.log(e);
+    if (activarIframe) {
       setdatoRecibido("");
-      setactivarIframe(false)
+      setactivarIframe(false);
       setTimeout(() => {
-        setactivarIframe(true)
+        setactivarIframe(true);
       }, 2000);
-    }else {
-      setactivarIframe(true)
+    } else {
+      setactivarIframe(true);
     }
   };
   console.log(submitData);
   return (
     <div className="App">
-      <h1>CONSENTIMIENTOS</h1>
-      <form
-        onSubmit={(e) => onSumitData(e)}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <div style={{ border: "1px solid" }}>
-          <div style={{ width: "100%", display: "flex" }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label>Tenan Id</label>
-              <input name="TenantId" placeholder={submitData.TenantId}></input>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label>Formulario ID</label>
+      <div style={{display:"flex", justifyContent:"space-between"}}>
+        <img src={rustico} />
+        <div style={{ display: "flex", flexDirection:"column" }}>
+          <form
+            onSubmit={(e) => onSumitData(e)}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "20px",
+              height:"67px",
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid",
+                borderColor: "rgb(118, 118, 118)",
+                borderRadius: "2px",
+              }}
+            >
+              <div style={{ width: "100%", display: "flex" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label>Tenan Id</label>
+                  <input
+                    name="TenantId"
+                    placeholder={submitData.TenantId}
+                  ></input>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label>Formulario ID</label>
+                  <input
+                    name="FormularioUUID"
+                    placeholder={submitData.FormularioUUID}
+                  ></input>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label>Idioma</label>
+                  <input
+                    name="CodigoIdioma"
+                    placeholder={submitData.CodigoIdioma}
+                  ></input>
+                </div>
+              </div>
               <input
-                name="FormularioUUID"
-                placeholder={submitData.FormularioUUID}
+                name="urlIfram"
+                style={{ width: "100%" }}
+                placeholder={submitData.urlIfram}
               ></input>
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label>Idioma</label>
-              <input
-                name="CodigoIdioma"
-                placeholder={submitData.CodigoIdioma}
-              ></input>
-            </div>
-          </div>
-          <input
-            name="urlIfram"
-            style={{ width: "100%" }}
-            placeholder={submitData.urlIfram}
-          ></input>
-        </div>
 
-        <button type="submit">Guardar y Iniciar</button>
-      </form>
+            <button type="submit">Guardar y Iniciar</button>
+          </form>
+          <h1 >CONTACTANOS</h1>
+        </div>
+        <img style={{width:"206px", height:"206px"}} src={cafe} />
+      </div>
       {datoRecibido === "ok" ? (
         <img src={imagen}></img>
       ) : (
         <div onLoad={() => carga()} style={{ borderRadius: "1rem" }}>
-          {activarIframe?
+          {activarIframe ? (
             <iframe
               id="mainframe"
               style={{ height: "500px", width: "70%" }}
               src={submitData.urlIfram}
-            ></iframe>:null
-          }
+            ></iframe>
+          ) : null}
         </div>
       )}
     </div>
