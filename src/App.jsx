@@ -3,6 +3,7 @@ import "./App.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import imagen from "../src/image/check.png";
+import { Card } from "./components/Card";
 
 function App() {
   const [datoRecibido, setdatoRecibido] = useState("");
@@ -59,7 +60,7 @@ function App() {
   console.log(submitData);
   return (
     <div className="App">
-      <h1>CONSENTIMIENTOS</h1>
+      <h1>COMPRA TU CARRO.COM</h1>
       <form
         onSubmit={(e) => onSumitData(e)}
         style={{
@@ -98,6 +99,11 @@ function App() {
 
         <button type="submit">Guardar y Iniciar</button>
       </form>
+
+      <div style={{display:"flex", justifyContent:"center"}}>
+      <Card/>
+      </div>
+
       {datoRecibido === "ok" ? (
         <img src={imagen}></img>
       ) : (
@@ -111,6 +117,8 @@ function App() {
           }
         </div>
       )}
+      
+      
     </div>
   );
 }
