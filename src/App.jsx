@@ -129,7 +129,7 @@ function App() {
           {activarIframe ? (
             <iframe
               id="mainframe"
-              style={{ height: "500px", width: "70%" }}
+              style={{ height: "500px", width: "70%", border:"none", borderRadius:"10px", opacity:"0.9", flex:1 }}
               src={submitData.urlIfram}
             ></iframe>
           ) : null}
