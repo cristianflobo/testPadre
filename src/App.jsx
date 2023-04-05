@@ -3,19 +3,19 @@ import "./App.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import imagen from "../src/image/check.png";
-import rustico from "./image/rustico.png";
-import cafe from "./image/cafe.png";
+import medellin from "./image/medellin.png";
+import nacional from "./image/nacional.png";
+import junior from "./image/junior.png";
+
 
 function App() {
   const [datoRecibido, setdatoRecibido] = useState("");
   const [activarIframe, setactivarIframe] = useState(false);
-  const [submitData, setsubmitData] = useState({
-    TenantId: "123",
-    FormularioUUID: "63d7d2b1787ff3cac5631894",
-    CodigoIdioma: "Idioma",
-    urlIfram: "https://localhost:7283/Consentimientos/",
-  });
-
+  const [submitData, setsubmitData] = useState("https://localhost:7283/Consentimientos/" );
+  const urlPadre = [{name:"nacional-six.vercel.app",img:medellin}, {name:"medellinpoderoso.vercel.app", img:nacional}, {name:"juniortupapa.vercel.app", img:junior}]
+  const selectImg = window.location.host
+  const imagenFondo = urlPadre.find(item => item.name == selectImg)
+  console.log(selectImg)
   var parentWindow = window.parent;
 
   //--------------------------------------------envia mensaje al hijo--------------
@@ -39,21 +39,9 @@ function App() {
   //---------------------------------------------------------------------------------
   const onSumitData = (e) => {
     e.preventDefault();
-    setsubmitData({
-      ...submitData,
-      [e.target[0].name]: e.target[0].value === "" ? "123" : e.target[0].value,
-      [e.target[1].name]:
-        e.target[1].value === ""
-          ? "63d7d2b1787ff3cac5631894"
-          : e.target[1].value,
-      [e.target[2].name]:
-        e.target[2].value === "" ? "Idioma" : e.target[2].value,
-      [e.target[3].name]:
-        e.target[3].value === ""
-          ? "https://localhost:7283/Consentimientos/"
-          : e.target[3].value,
-    });
+    setsubmitData( e.target[0].value);
     console.log(e);
+    
     if (activarIframe) {
       setdatoRecibido("");
       setactivarIframe(false);
@@ -66,27 +54,21 @@ function App() {
   };
   console.log(submitData);
   return (
-    <div className="App">
-      <div style={{display:"flex", justifyContent:"space-between"}}>
-        <img src={rustico} />
-        <div style={{ display: "flex", flexDirection:"column" }}>
+    <div className="App" style={{ backgroundImage:`${imagenFondo.img}`}}>
+      <div style={{display:"flex", justifyContent:"center", width:"90%"}}>
+
+        <div style={{ display: "flex", flexDirection:"column", width:"70%" }}>
           <form
             onSubmit={(e) => onSumitData(e)}
             style={{
               display: "flex",
               justifyContent: "center",
               marginBottom: "20px",
-              height:"67px",
+              height:"40px",
             }}
           >
-            <div
-              style={{
-                border: "1px solid",
-                borderColor: "rgb(118, 118, 118)",
-                borderRadius: "2px",
-              }}
-            >
-              <div style={{ width: "100%", display: "flex" }}>
+         
+              {/* <div style={{ width: "100%", display: "flex" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label>Tenan Id</label>
                   <input
@@ -108,19 +90,19 @@ function App() {
                     placeholder={submitData.CodigoIdioma}
                   ></input>
                 </div>
-              </div>
+              </div> */}
               <input
                 name="urlIfram"
                 style={{ width: "100%" }}
                 placeholder={submitData.urlIfram}
               ></input>
-            </div>
+           
 
             <button type="submit">Guardar y Iniciar</button>
           </form>
           <h1 >CONTACTANOS</h1>
         </div>
-        <img style={{width:"206px", height:"206px"}} src={cafe} />
+     
       </div>
       {datoRecibido === "ok" ? (
         <img src={imagen}></img>
@@ -130,7 +112,7 @@ function App() {
             <iframe
               id="mainframe"
               style={{ height: "500px", width: "70%", border:"none", borderRadius:"10px", opacity:"0.9", flex:1 }}
-              src={submitData.urlIfram}
+              src={submitData}
             ></iframe>
           ) : null}
         </div>
