@@ -3,7 +3,7 @@ import "./App.css";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import imagen from "../src/image/check.png";
-import medellin from "../src/image/rustico.png";
+import medellin from "./image/medellin.png";
 import nacional from "./image/nacional.png";
 import junior from "./image/junior.png";
 
@@ -15,7 +15,7 @@ function App() {
   const [submitData, setsubmitData] = useState("https://localhost:7283/Consentimientos/" );
 
   useEffect(() => {
-    const urlPadre = [{name:"nacional-six.vercel.app",img:medellin}, {name:"medellinpoderoso.vercel.app", img:nacional}, {name:"juniortupapa.vercel.app", img:junior}]
+    const urlPadre = [{name:"nacional-six.vercel.app",img:nacional}, {name:"medellinpoderoso.vercel.app", img:medellin}, {name:"juniortupapa.vercel.app", img:junior}]
     const selectImg = window.location.host
     const imagenFondo = urlPadre.find(item => item.name == selectImg)
   
