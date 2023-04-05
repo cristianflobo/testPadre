@@ -1,9 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import imagen from "../src/image/check.png";
-import medellin from "./image/medellin.png";
+import medellin from "../src/image/rustico.png";
 import nacional from "./image/nacional.png";
 import junior from "./image/junior.png";
 
@@ -11,13 +11,20 @@ import junior from "./image/junior.png";
 function App() {
   const [datoRecibido, setdatoRecibido] = useState("");
   const [activarIframe, setactivarIframe] = useState(false);
-  const [cambioimagen, setcambioimagen] = useState("");
+  const [imagenAct, setimagenAct] = useState("");
   const [submitData, setsubmitData] = useState("https://localhost:7283/Consentimientos/" );
-  const urlPadre = [{name:"nacional-six.vercel.app",img:medellin}, {name:"medellinpoderoso.vercel.app", img:nacional}, {name:"juniortupapa.vercel.app", img:junior}]
-  const selectImg = window.location.host
-  const imagenFondo = urlPadre.find(item => item.name == selectImg)
-  setcambioimagen(imagenFondo.img)
-  console.log(imagenFondo)
+
+  useEffect(() => {
+    const urlPadre = [{name:"nacional-six.vercel.app",img:medellin}, {name:"medellinpoderoso.vercel.app", img:nacional}, {name:"juniortupapa.vercel.app", img:junior}]
+    const selectImg = window.location.host
+    const imagenFondo = urlPadre.find(item => item.name == selectImg)
+  
+    setimagenAct(imagenFondo.img)
+  }, [])
+  
+  
+
+  console.log(imagenAct)
   var parentWindow = window.parent;
 
   //--------------------------------------------envia mensaje al hijo--------------
@@ -56,7 +63,7 @@ function App() {
   };
   console.log(submitData);
   return (
-    <div className="App" style={{ backgroundImage:`${cambioimagen}`}}>
+    <div className="App" style={{ backgroundImage:`url(${imagenAct})`}}>
       <div style={{display:"flex", justifyContent:"center", width:"90%"}}>
 
         <div style={{ display: "flex", flexDirection:"column", width:"70%" }}>
