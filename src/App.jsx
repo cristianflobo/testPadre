@@ -15,7 +15,7 @@ function App() {
   const urlPadre = [{name:"nacional-six.vercel.app",img:medellin}, {name:"medellinpoderoso.vercel.app", img:nacional}, {name:"juniortupapa.vercel.app", img:junior}]
   const selectImg = window.location.host
   const imagenFondo = urlPadre.find(item => item.name == selectImg)
-  console.log(selectImg)
+  console.log(imagenFondo)
   var parentWindow = window.parent;
 
   //--------------------------------------------envia mensaje al hijo--------------
