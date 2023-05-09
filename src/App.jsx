@@ -113,9 +113,7 @@ function App() {
         </div>
      
       </div>
-      {datoRecibido === "ok" ? (
-        <img src={imagen}></img>
-      ) : (
+   
         <div onLoad={() => carga()} style={{ borderRadius: "1rem" }}>
           {activarIframe ? (
             <iframe
@@ -125,7 +123,7 @@ function App() {
             ></iframe>
           ) : null}
         </div>
-      )}
+    
     </div>
   );
 }
