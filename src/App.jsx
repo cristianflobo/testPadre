@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "../src/assets/index2.css"
 import "./App.css";
 import Swal from "sweetalert2";
@@ -7,7 +6,7 @@ import imagen from "../src/image/check.png";
 import medellin from "./image/medellin.png";
 import nacional from "./image/nacional.png";
 import junior from "./image/junior.png";
-import index2 from "../src/assets/index2"
+
 
 
 function App() {
@@ -24,12 +23,6 @@ function App() {
     // const selectImg = window.location.host
     // const imagenFondo = urlPadre.find(item => item.name == selectImg)
     // setimagenAct(imagenFondo.img)
-    const scripjs = document.createElement("script");
-    scripjs.href = index2;
-    document.head.appendChild(scripjs);
-    return () => {
-      document.head.removeChild(scripjs);   
-    };
   }, []);
   
 
